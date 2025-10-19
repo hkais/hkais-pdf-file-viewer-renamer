@@ -577,11 +577,10 @@ class PDFViewerApp:
         """Show installation guide for OCR functionality"""
         dialog = tk.Toplevel(self.root)
         dialog.title("התקנת OCR")
-        dialog.geometry("600x400")
         dialog.transient(self.root)
         
         # Position dialog near the buttons
-        self.position_dialog_near_buttons(dialog)
+        self.position_dialog_near_buttons(dialog, width=600, height=400)
         
         tk.Label(dialog, text="OCR לא מותקן", 
                 font=("Arial", 14, "bold"), fg="#E91E63").pack(pady=10)
@@ -623,7 +622,6 @@ class PDFViewerApp:
         # Create dialog window
         dialog = tk.Toplevel(self.root)
         dialog.title("תוצאות חילוץ OCR משופר")
-        dialog.geometry("1200x1800")
         dialog.transient(self.root)
         
         # Set RTL orientation for the dialog
@@ -631,7 +629,7 @@ class PDFViewerApp:
         dialog.configure(bg='white')
         
         # Position dialog near the buttons
-        self.position_dialog_near_buttons(dialog)
+        self.position_dialog_near_buttons(dialog, width=350, height=600)
         
         # Create main frame with RTL support
         main_frame = tk.Frame(dialog, bg='white')
@@ -908,11 +906,10 @@ class PDFViewerApp:
         # Create dialog window
         dialog = tk.Toplevel(self.root)
         dialog.title("תוצאות חילוץ טקסט")
-        dialog.geometry("600x500")
         dialog.transient(self.root)
         
         # Position dialog near the buttons
-        self.position_dialog_near_buttons(dialog)
+        self.position_dialog_near_buttons(dialog, width=350, height=600)
         
         # Create notebook for tabs
         notebook = ttk.Notebook(dialog)
@@ -983,11 +980,10 @@ class PDFViewerApp:
         # Create dialog window
         dialog = tk.Toplevel(self.root)
         dialog.title("תוצאות חילוץ ממוספרות בדיקה")
-        dialog.geometry("800x700")
         dialog.transient(self.root)
         
         # Position dialog near the buttons
-        self.position_dialog_near_buttons(dialog)
+        self.position_dialog_near_buttons(dialog, width=350, height=600)
         
         # Create notebook for tabs
         notebook = ttk.Notebook(dialog)
@@ -1251,8 +1247,12 @@ class PDFViewerApp:
         
         return result[0]
     
-    def position_dialog_near_buttons(self, dialog):
+    def position_dialog_near_buttons(self, dialog, width=None, height=None):
         """Position dialog near the rename buttons in the right panel"""
+        # Use provided dimensions or defaults for small dialogs
+        dialog_width = width if width is not None else 350
+        dialog_height = height if height is not None else 180
+        
         # Get the position of the rename buttons frame
         button_frame = None
         for widget in self.root.winfo_children():
@@ -1278,10 +1278,6 @@ class PDFViewerApp:
             x = button_frame.winfo_rootx()
             y = button_frame.winfo_rooty()
             
-            # Position dialog above the buttons with some offset
-            dialog_width = 350
-            dialog_height = 180
-            
             # Calculate position to avoid covering important content
             dialog_x = x + 50  # Offset to the right of buttons
             dialog_y = y - dialog_height - 20  # Position above buttons
@@ -1300,7 +1296,7 @@ class PDFViewerApp:
             dialog.geometry(f"{dialog_width}x{dialog_height}+{dialog_x}+{dialog_y}")
         else:
             # Fallback: center on screen
-            dialog.geometry("350x180")
+            dialog.geometry(f"{dialog_width}x{dialog_height}")
             dialog.eval(f'tk::PlaceWindow {dialog._w} center')
     
     def standard_rename(self):
