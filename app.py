@@ -303,7 +303,7 @@ class PDFViewerApp:
         
         # Position dialog near the rename buttons
         self.position_dialog_near_buttons(dialog)
-        
+          
         # Create content
         tk.Label(dialog, text="הזן מספר בדיקה להוספה לתחילת שם הקובץ:", 
                 font=("Arial", 10)).pack(pady=10, padx=20)
