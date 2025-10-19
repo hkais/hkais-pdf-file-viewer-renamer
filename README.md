@@ -93,6 +93,9 @@ python app.py
 **Issue**: Application window is too small/large
 - **Solution**: The window size is 1200x700 by default. You can resize it manually or modify the `self.root.geometry("1200x700")` line in `app.py`
 
+## Executable build command
+
+
 ## Requirements
 
 See `requirements.txt` for exact version requirements:

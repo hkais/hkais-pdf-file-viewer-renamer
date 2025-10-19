@@ -5,7 +5,6 @@ import fitz  # PyMuPDF
 from PIL import Image, ImageTk
 import os
 
-
 class PDFViewerApp:
     def __init__(self, root):
         self.root = root
