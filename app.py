@@ -79,13 +79,14 @@ class PDFViewerApp:
                  command=self.standard_rename, font=("Arial", 10), 
                  bg="#FF9800", fg="white", pady=5).pack(fill=tk.X, pady=2)
         
-        tk.Button(button_frame, text="חילוץ טקסט", 
-                 command=self.extract_text, font=("Arial", 10), 
-                 bg="#9C27B0", fg="white", pady=5).pack(fill=tk.X, pady=2)
+        # Text extraction buttons (hidden for now, code kept for future use)
+        # tk.Button(button_frame, text="חילוץ טקסט", 
+        #          command=self.extract_text, font=("Arial", 10), 
+        #          bg="#9C27B0", fg="white", pady=5).pack(fill=tk.X, pady=2)
         
-        tk.Button(button_frame, text="חילוץ עם OCR", 
-                 command=self.extract_text_with_ocr, font=("Arial", 10), 
-                 bg="#E91E63", fg="white", pady=5).pack(fill=tk.X, pady=2)
+        # tk.Button(button_frame, text="חילוץ עם OCR", 
+        #          command=self.extract_text_with_ocr, font=("Arial", 10), 
+        #          bg="#E91E63", fg="white", pady=5).pack(fill=tk.X, pady=2)
         
         # Left panel - PDF preview (RTL: preview on left)
         left_frame = tk.Frame(self.paned_window, bg="white", relief=tk.SUNKEN, borderwidth=2)
