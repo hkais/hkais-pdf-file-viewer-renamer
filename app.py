@@ -35,7 +35,9 @@ class PDFViewerApp:
         
         # Button on the right side for RTL
         tk.Button(top_frame, text="בחר תיקייה", command=self.select_folder, 
-                 font=("Arial", 12), bg="#4CAF50", fg="white", padx=20, pady=5).pack(side=tk.RIGHT)
+                 font=("Arial", 12, "bold"), bg="#4CAF50", fg="white", 
+                 padx=20, pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#45a049", activeforeground="white").pack(side=tk.RIGHT)
         
         self.folder_label = tk.Label(top_frame, text="לא נבחרה תיקייה", 
                                      font=("Arial", 10), fg="gray")
@@ -72,12 +74,14 @@ class PDFViewerApp:
         button_frame.pack(pady=10, fill=tk.X)
         
         tk.Button(button_frame, text="שינוי שם מהיר\n(מספר בדיקה)", 
-                 command=self.quick_rename, font=("Arial", 10), 
-                 bg="#2196F3", fg="white", pady=5).pack(fill=tk.X, pady=2)
+                 command=self.quick_rename, font=("Arial", 10, "bold"), 
+                 bg="#2196F3", fg="white", pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#1976D2", activeforeground="white").pack(fill=tk.X, pady=3)
         
         tk.Button(button_frame, text="שינוי שם רגיל", 
-                 command=self.standard_rename, font=("Arial", 10), 
-                 bg="#FF9800", fg="white", pady=5).pack(fill=tk.X, pady=2)
+                 command=self.standard_rename, font=("Arial", 10, "bold"), 
+                 bg="#F57C00", fg="white", pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#E64A19", activeforeground="white").pack(fill=tk.X, pady=3)
         
         # Text extraction buttons (hidden for now, code kept for future use)
         # tk.Button(button_frame, text="חילוץ טקסט", 
@@ -91,12 +95,16 @@ class PDFViewerApp:
         # Left panel - PDF preview (RTL: preview on left)
         left_frame = tk.Frame(self.paned_window, bg="white", relief=tk.SUNKEN, borderwidth=2)
         
-        tk.Label(left_frame, text="תצוגה מקדימה", font=("Arial", 12, "bold"), 
-                bg="white").pack(pady=5)
+        # Header frame with distinct background color
+        header_frame = tk.Frame(left_frame, bg="#E8F5E9")
+        header_frame.pack(fill=tk.X)
+        
+        tk.Label(header_frame, text="תצוגה מקדימה", font=("Arial", 12, "bold"), 
+                bg="#E8F5E9").pack(pady=5)
         
         # Filename display
-        self.filename_label = tk.Label(left_frame, text="", font=("Arial", 10), 
-                                      bg="white", fg="#666666")
+        self.filename_label = tk.Label(header_frame, text="", font=("Arial", 10), 
+                                      bg="#E8F5E9", fg="#666666")
         self.filename_label.pack(pady=(0, 5))
         
         # Horizontal separator
@@ -612,8 +620,9 @@ class PDFViewerApp:
         button_frame.pack(pady=10)
         
         tk.Button(button_frame, text="סגור", command=dialog.destroy,
-                 font=("Arial", 10), bg="#607D8B", fg="white",
-                 padx=20, pady=5).pack()
+                 font=("Arial", 10, "bold"), bg="#607D8B", fg="white",
+                 padx=30, pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#546E7A", activeforeground="white").pack()
         
         # Make dialog modal
         dialog.grab_set()
@@ -716,7 +725,9 @@ class PDFViewerApp:
                 # Use button
                 use_button = tk.Button(candidate_frame, text="השתמש במספר זה",
                                      command=lambda num=candidate['number']: self.use_ocr_number(num, dialog),
-                                     font=("Arial", 9), bg="#4CAF50", fg="white")
+                                     font=("Arial", 9, "bold"), bg="#4CAF50", fg="white",
+                                     relief=tk.RAISED, bd=2, padx=10, pady=3,
+                                     activebackground="#45a049", activeforeground="white")
                 use_button.pack(pady=5)
         else:
             tk.Label(scrollable_frame, text="לא נמצאו מספרים באף שיטת עיבוד", 
@@ -845,7 +856,8 @@ class PDFViewerApp:
         
         tk.Button(button_frame, text="סגור", command=dialog.destroy,
                  font=("Arial", 11, "bold"), bg="#607D8B", fg="white",
-                 padx=30, pady=8, relief=tk.RAISED, bd=2).pack()
+                 padx=30, pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#546E7A", activeforeground="white").pack()
         
         # Make dialog modal
         dialog.grab_set()
@@ -969,8 +981,9 @@ class PDFViewerApp:
         button_frame.pack(pady=10)
         
         tk.Button(button_frame, text="סגור", command=dialog.destroy,
-                 font=("Arial", 10), bg="#607D8B", fg="white",
-                 padx=20, pady=5).pack()
+                 font=("Arial", 10, "bold"), bg="#607D8B", fg="white",
+                 padx=30, pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#546E7A", activeforeground="white").pack()
         
         # Make dialog modal
         dialog.grab_set()
@@ -1064,7 +1077,9 @@ class PDFViewerApp:
                 # Use button
                 use_button = tk.Button(candidate_frame, text="השתמש במספר זה",
                                      command=lambda num=candidate['number']: self.use_extracted_number(num, dialog),
-                                     font=("Arial", 9), bg="#4CAF50", fg="white")
+                                     font=("Arial", 9, "bold"), bg="#4CAF50", fg="white",
+                                     relief=tk.RAISED, bd=2, padx=10, pady=3,
+                                     activebackground="#45a049", activeforeground="white")
                 use_button.pack(pady=5)
         else:
             tk.Label(scrollable_frame, text="לא נמצאו מספרים באזור החיפוש", 
@@ -1133,8 +1148,9 @@ class PDFViewerApp:
         button_frame.pack(pady=10)
         
         tk.Button(button_frame, text="סגור", command=dialog.destroy,
-                 font=("Arial", 10), bg="#607D8B", fg="white",
-                 padx=20, pady=5).pack()
+                 font=("Arial", 10, "bold"), bg="#607D8B", fg="white",
+                 padx=30, pady=8, relief=tk.RAISED, bd=3,
+                 activebackground="#546E7A", activeforeground="white").pack()
         
         # Make dialog modal
         dialog.grab_set()
@@ -1179,12 +1195,14 @@ class PDFViewerApp:
         button_frame.pack(pady=10)
         
         tk.Button(button_frame, text="אישור", command=on_ok, 
-                 font=("Arial", 10), bg="#4CAF50", fg="white", 
-                 padx=25, pady=2).pack(side=tk.RIGHT, padx=2)
+                 font=("Arial", 10, "bold"), bg="#4CAF50", fg="white", 
+                 padx=30, pady=5, relief=tk.RAISED, bd=3,
+                 activebackground="#45a049", activeforeground="white").pack(side=tk.RIGHT, padx=3)
         
         tk.Button(button_frame, text="ביטול", command=on_cancel, 
-                 font=("Arial", 10), bg="#f44336", fg="white", 
-                 padx=25, pady=2).pack(side=tk.RIGHT, padx=2)
+                 font=("Arial", 10, "bold"), bg="#f44336", fg="white", 
+                 padx=30, pady=5, relief=tk.RAISED, bd=3,
+                 activebackground="#da190b", activeforeground="white").pack(side=tk.RIGHT, padx=3)
         
         # Bind Enter key to OK
         dialog.bind('<Return>', lambda e: on_ok())
@@ -1231,12 +1249,14 @@ class PDFViewerApp:
         button_frame.pack(pady=10)
         
         tk.Button(button_frame, text="אישור", command=on_ok, 
-                 font=("Arial", 12), bg="#4CAF50", fg="white", 
-                 padx=25, pady=2).pack(side=tk.RIGHT, padx=2)
+                 font=("Arial", 12, "bold"), bg="#4CAF50", fg="white", 
+                 padx=30, pady=5, relief=tk.RAISED, bd=3,
+                 activebackground="#45a049", activeforeground="white").pack(side=tk.RIGHT, padx=3)
         
         tk.Button(button_frame, text="ביטול", command=on_cancel, 
-                 font=("Arial", 12), bg="#f44336", fg="white", 
-                 padx=25, pady=2).pack(side=tk.RIGHT, padx=2)
+                 font=("Arial", 12, "bold"), bg="#f44336", fg="white", 
+                 padx=30, pady=5, relief=tk.RAISED, bd=3,
+                 activebackground="#da190b", activeforeground="white").pack(side=tk.RIGHT, padx=3)
         
         # Bind Enter key to OK
         dialog.bind('<Return>', lambda e: on_ok())
